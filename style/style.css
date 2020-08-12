@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Baloo+Tamma+2:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+/*
+font-family: 'Anton', sans-serif;
+font-family: 'Baloo Tamma 2', cursive;
+font-family: 'Open Sans', sans-serif;
+*/
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: #0D1157;
+}
+header {
+    height: 50px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #070930;
+}
+.header {
+    width: 800px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.header h1 {
+    margin: auto 15px;
+    color: white;
+    font-family: 'Anton', sans-serif;
+}
+.logout {
+    margin-right: 15px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-family: 'Open Sans', sans-serif;
+}
+.logout input[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    outline: none;
+    padding: 5px 20px;
+    border-top: 2px solid #8FAF4E;
+    border-bottom: 2px solid #8FAF4E;
+    color: #B6CFE1;
+    border-radius: 15px;
+    transition: 0.25s;
+    cursor: pointer;
+    margin-top: 3px;
+    float: right;
+}
+.logout input[type = "submit"]:hover {
+    background: #546B24;
+}
+a#username {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    color: #D6E1BD;
+    border-radius: 5px;
+    transition: 0.25s;
+    padding: 3px 5px;
+    margin-left: auto;
+    float: right;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10pt;
+}
+a#username:hover {
+    background: #0D1157;
+    color: white;
+}
+
+.reglogin-box {
+    background-color: #040519;
+}
+.reglogin {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    padding: 10px;
+    color: #B6CFE1;
+    align-items: center;
+}
+.reglogin input {
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+.erro {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    margin-top: 5px;
+    color: #9874a1;
+    text-align: center;
+    font-size: 11pt;
+    display: none;
+}
+.reglogin input[type = "text"], .reglogin input[type = "password"] {
+    border: 0;
+    text-decoration: none;
+    background: none;
+    display: block;
+    outline: none;
+    width: 150px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    color: white;
+    border-bottom: 2px solid #B6CFE1;
+    border-radius: 15px;
+    transition: 0.25s;
+}
+.reglogin input[type = "text"]:focus, .reglogin input[type = "password"]:focus {
+    background: #040859;
+}
+.reglogin input[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    outline: none;
+    padding: 5px 20px;
+    border-bottom: 2px solid #8A4E9B;
+    color: #B6CFE1;
+    border-radius: 15px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+.reglogin input[type = "submit"]:hover {
+    background: #4A1C57;
+    padding: 5px 30px;
+}
+.reg {
+    flex-grow: 1;
+}
+.bar {
+    width: 3px;
+    height: 80px;
+    border-radius: 1px;
+    background-color: white;
+    margin: auto 20px;
+}
+.login {
+    flex-grow: 1;
+}
+
+div#bet-bar {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bet-error {
+    background-color: #ac1e1e;
+}
+.bet-success {
+    background-color: #109710;
+}
+.bet-msg {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+.close-button {
+    border: 0;
+    background: none;
+    outline: none;
+    margin-top: -3px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 18pt;
+    color: white;
+    transition: 0.15s;
+}
+.close-button:hover {
+    color: #B6CFE1;
+}
+
+.body {
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+.body h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Baloo Tamma 2', cursive;
+    font-weight: 700;
+    font-size: 17pt;
+}
+.body hr {
+    border: 1px solid #B6CFE1;
+    margin-right: 80px;
+    margin-top: -3px;
+    margin-bottom: 20px;
+}
+.left {
+    flex-grow: 70;
+    margin: 5px;
+    margin-right: 25px;
+}
+.league, .game {
+    border-radius: 10px;
+    border-top: 3px solid #070930;
+    border-bottom: 3px solid #070930;
+    background-color: #0D104F;
+    transition: 0.25s;
+    margin-bottom: 15px;
+}
+.league:hover, .game:hover {
+    background-color: #090D4A;
+}
+.league-sup {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.league-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 4;
+}
+.league img {
+    margin-right: 10px;
+}
+.league-name {
+    font-family: 'Baloo Tamma 2', cursive;
+    font-size: 13pt;
+}
+.league-start {
+    font-size: 8pt;
+}
+.bet-league {
+    font-size: 11pt;
+    color: #60DB98;
+    font-weight: 700;
+}
+.bet-done {
+    font-size: 11pt;
+    color: #b2bd18;
+    font-weight: 700;
+}
+.bet-red {
+    font-size: 11pt;
+    color: #ac1e1e;
+    font-weight: 700;
+}
+.bet-green {
+    font-size: 11pt;
+    color: #109710;
+    font-weight: 700;
+}
+.league-inf, .game-inf {
+    display: none;
+    padding: 10px;
+}
+.league hr, .game hr {
+    width: 90%;
+    margin: 0 auto;
+    border: 1.5px solid #070930;
+}
+.league-form {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+select#league-winner {
+    border: 0;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid #8A4E9B;
+    color: white;
+    border-radius: 10px;
+    padding: 3px 8px;
+    transition: 0.25s;
+    margin-right: 8px;
+    font-size: 11pt;
+}
+select#league-winner option {
+    color: black;
+}
+.league-form input[type = "submit"], .game-form input[type = "submit"] {
+    border: 0;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid #60DB98;
+    border-top: 2px solid #60DB98;
+    border-radius: 10px;
+    padding: 3px 13px;
+    transition: 0.25s;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 10pt;
+}
+.league-form input[type = "submit"]:hover, .game-form input[type = "submit"]:hover {
+    background: #2E8B58;
+}
+.no-leagues {
+    border-radius: 10px;
+    border-top: 3px solid #070930;
+    border-bottom: 3px solid #070930;
+    background-color: #0D104F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+span#no-league {
+    color: white;
+    font-family: 'Baloo Tamma 2', cursive;
+    font-size: 15pt;
+    margin-top: 4px;
+}
+.games {
+    margin-top: 30px;
+}
+.game-sup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.game-sup-sup {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.competition {
+    display: flex;
+    align-items: center;
+}
+.competition img {
+    margin-right: 5px;
+}
+.game-info {
+    font-size: 9pt;
+}
+.teams {
+    width: 94%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.team-home, .team-away {
+    display: flex;
+    align-items: center;
+}
+.team-home img {
+    margin-right: 5px;
+}
+.team-away img {
+    margin-left: 5px;
+}
+.team-name {
+    font-size: 11pt;
+    font-weight: 700;
+}
+.game-form {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game-form input[type = "number"] {
+    border: 0;
+    background: none;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    border-bottom: 2px solid #8A4E9B;
+    width: 50px;
+    text-align: center;
+    margin: 0 5px;
+    transition: 0.25s;
+}
+.game-form input[type = "number"]:hover {
+    background: rgba(74, 28, 87, 0.5);
+}
+.game-form input[type = "radio"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.rigth {
+    flex-grow: 30;
+    margin: 5px;
+}
+.rigth table {
+    width: 100%;
+    border-bottom: 3px solid #2E8B58;
+    text-align: right;
+    border-collapse: collapse;
+    border-spacing: 10;
+}
+.pos {
+    text-align: left;
+}
+tr#table-header {
+    background-color: #2E8B58;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+.table-content {
+    border-bottom: 2px solid #070930;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.table-content:hover {
+    background-color: #8A4E9B;
+}
