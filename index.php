@@ -17,7 +17,7 @@
             require 'includes/dbh.inc.php';
             if (isset($_SESSION['username'])) : ?>
                 <div class="logout">
-                    <a href="#" id="username"><?php echo $_SESSION['username']; ?></a>
+                    <a href="admin.php" id="username"><?php echo $_SESSION['username']; ?></a>
                     <form action="includes/logout.inc.php" method="post">
                         <input type="submit" value="Logout">
                     </form>
