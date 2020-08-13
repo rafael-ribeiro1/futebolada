@@ -32,7 +32,7 @@ if (isset($_POST['submit-game'])) {
     }
     $row = mysqli_fetch_assoc($result);
     if ($row['done'] == 1) {
-        header("Location: ../index.php?errorgame=gamedone");
+        header("Location: ../admin.php?errorgame=gamedone");
         exit();
     }
 

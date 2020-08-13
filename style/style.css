@@ -424,3 +424,14 @@ tr#table-header {
 .table-content:hover {
     background-color: #8A4E9B;
 }
+.cotacao {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #070930;
+}
+.cotacao p {
+    font-size: 8pt;
+}
+.points {
+    font-weight: 600;
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style.css?version=1">
     <title>Futebolada ⚽</title>
 </head>
 
@@ -65,7 +65,7 @@
                 <h2>Competições</h2>
                 <hr>
                 <?php
-                $sql = "SELECT * FROM leagues";
+                $sql = "SELECT * FROM leagues ORDER BY done";
                 $result = mysqli_query($conn, $sql);
                 $queryResult = mysqli_num_rows($result);
                 if ($queryResult > 0) :
@@ -106,7 +106,7 @@
                 <h2>Jogos</h2>
                 <hr>
                 <?php
-                $sql = "SELECT * FROM games";
+                $sql = "SELECT * FROM games ORDER BY done";
                 $result = mysqli_query($conn, $sql);
                 $queryResult = mysqli_num_rows($result);
                 if ($queryResult > 0) :
@@ -180,29 +180,40 @@
             </div>
         </div>
         <div class="rigth">
-            <h2>Classificação</h2>
-            <hr>
-            <div class="classi">
-                <table>
-                    <tr id="table-header">
-                        <th class="pos">Pos</th>
-                        <th>User</th>
-                        <th>Pontos</th>
-                    </tr>
-                    <?php
-                    $sql = "SELECT username, points FROM users ORDER BY points DESC;";
-                    $result = mysqli_query($conn, $sql);
-                    $c = 1;
-                    while ($row = mysqli_fetch_assoc($result)) : ?>
-                        <tr class="table-content">
-                            <td class="pos"><?php echo $c; ?></td>
-                            <td><?php echo $row['username']; ?></td>
-                            <td><?php echo $row['points']; ?></td>
+            <div class="classification">
+                <h2>Classificação</h2>
+                <hr>
+                <div class="classi">
+                    <table>
+                        <tr id="table-header">
+                            <th class="pos">Pos</th>
+                            <th>User</th>
+                            <th>Pontos</th>
                         </tr>
-                    <?php $c++;
-                    endwhile;
-                    mysqli_close($conn); ?>
-                </table>
+                        <?php
+                        $sql = "SELECT username, points FROM users ORDER BY points DESC;";
+                        $result = mysqli_query($conn, $sql);
+                        $c = 1;
+                        while ($row = mysqli_fetch_assoc($result)) : ?>
+                            <tr class="table-content">
+                                <td class="pos"><?php echo $c; ?></td>
+                                <td><?php echo $row['username']; ?></td>
+                                <td><?php echo $row['points']; ?></td>
+                            </tr>
+                        <?php $c++;
+                        endwhile;
+                        mysqli_close($conn); ?>
+                    </table>
+                </div>
+            </div>
+            <div class="cotacao">
+                <h2>Cotação</h2>
+                <hr>
+                <p>Resultado: <span class="points">+3 pontos</span></p>
+                <p>Resultado exato: <span class="points">+3 pontos</span></p>
+                <p>Apenas res. de um equipa: <span class="points">+1 pontos</span></p>
+                <p>Vencedor penalties: <span class="points">+3 pontos</span></p>
+                <p>Vencedor competição: <span class="points">+7 pontos</span></p>
             </div>
         </div>
     </div>
