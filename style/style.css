@@ -354,9 +354,15 @@ span#no-league {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 .team-home, .team-away {
     display: flex;
+    align-items: center;
+}
+.vs-res {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 .team-home img {
@@ -395,6 +401,15 @@ span#no-league {
     height: 15px;
     cursor: pointer;
 }
+.bet-result {
+    padding-top: 10px;
+    text-align: center;
+}
+.result-bet {
+    font-weight: 600;
+    color: #B6CFE1;
+    font-size: 15pt;
+}
 
 .rigth {
     flex-grow: 30;
@@ -426,6 +441,7 @@ tr#table-header {
 }
 .cotacao {
     margin-top: 30px;
+    margin-bottom: 25px;
     padding: 10px;
     background-color: #070930;
 }

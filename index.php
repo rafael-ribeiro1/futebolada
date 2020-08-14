@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css?version=1">
+    <link rel="stylesheet" href="style/style.css?version=2">
+    <link rel="stylesheet" href="style/mobile.css?version=1">
     <title>Futebolada ⚽</title>
 </head>
 
@@ -81,18 +82,31 @@
                             </div>
                             <div id="league<?php echo $row['id']; ?>" class="league-inf">
                                 <hr>
-                                <form class="league-form" action="includes/betLeague.inc.php" method="post">
-                                    <input type="text" name="league-id" value="<?php echo $row['id']; ?>" readonly style="display: none; width: 0; height: 0;">
-                                    <select name="winner" id="league-winner">
-                                        <?php
-                                        $sql2 = "SELECT id, name FROM teams WHERE league=" . $row['id'];
-                                        $result2 = mysqli_query($conn, $sql2);
-                                        while ($row2 = mysqli_fetch_assoc($result2)) : ?>
-                                            <option value="<?php echo $row2['id']; ?>"><?php echo $row2['name']; ?></option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                    <input type="submit" name="bet-league" value="Apostar">
-                                </form>
+                                <?php
+                                $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+                                $sql2 = "SELECT * FROM leaguebets WHERE user=" . $userId . " AND league=" . $row['id'];
+                                $result2 = mysqli_query($conn, $sql2);
+                                $queryResult2 = mysqli_num_rows($result2);
+                                if ($queryResult2 == 0) : ?>
+                                    <form class="league-form" action="includes/betLeague.inc.php" method="post">
+                                        <input type="text" name="league-id" value="<?php echo $row['id']; ?>" readonly style="display: none; width: 0; height: 0;">
+                                        <select name="winner" id="league-winner">
+                                            <?php
+                                            $sql2 = "SELECT id, name FROM teams WHERE league=" . $row['id'];
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            while ($row2 = mysqli_fetch_assoc($result2)) : ?>
+                                                <option value="<?php echo $row2['id']; ?>"><?php echo $row2['name']; ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                        <input type="submit" name="bet-league" value="Apostar">
+                                    </form>
+                                <?php else :
+                                    $row2 = mysqli_fetch_assoc($result2);
+                                    $sql3 = "SELECT name FROM teams WHERE id=".$row2['winner'];
+                                    $result3 = mysqli_query($conn, $sql3);
+                                    $row3 = mysqli_fetch_assoc($result3); ?>
+                                    <p class="bet-result">Aposta vencedor: <span class="result-bet"><?php echo $row3['name']; ?></span></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endwhile;
@@ -138,8 +152,12 @@
                                         <img src="<?php echo $row3['img']; ?>" alt="<?php echo $row3['name']; ?>" width="40px">
                                         <span class="team-name"><?php echo $row3['name']; ?></span>
                                     </div>
-                                    <div style="display: flex; flex-direction: column; align-items: center;">
-                                        <span style="font-size: 15pt;">vs</span>
+                                    <div class="vs-res">
+                                        <?php if ($row['done'] == 0) : ?>
+                                            <span style="font-size: 15pt;">vs</span>
+                                        <?php else : ?>
+                                            <span style="font-size: 13pt; font-weight: 600;"><?php echo gameResult($row); ?></span>
+                                        <?php endif; ?>
                                         <span class="game-info"><?php echo date("H:i d/m/Y", strtotime($row['datetime'])); ?></span>
                                     </div>
                                     <?php
@@ -155,20 +173,30 @@
                             </div>
                             <div id="game<?php echo $row['id']; ?>" class="game-inf">
                                 <hr>
-                                <form class="game-form" action="includes/betGame.inc.php" method="post">
-                                    <input type="text" name="game-id" value="<?php echo $row['id']; ?>" readonly style="display: none; width: 0; height: 0;">
-                                    <div style="margin-bottom: 5px;">
-                                        <input type="number" name="result-home" required id="result-home<?php echo $row['id']; ?>" value="0" min="0" oninput="checkResult(<?php echo $row['id']; ?>)">
-                                        <span>vs</span>
-                                        <input type="number" name="result-away" required id="result-away<?php echo $row['id']; ?>" value="0" min="0" oninput="checkResult(<?php echo $row['id']; ?>)">
-                                    </div>
-                                    <div id="penalties<?php echo $row['id']; ?>" style="margin-bottom: 8px;">
-                                        <input type="radio" name="penalty" value="1" checked>
-                                        <span> ← Vencedor penalties → </span>
-                                        <input type="radio" name="penalty" value="2">
-                                    </div>
-                                    <input type="submit" name="bet-game" value="Apostar">
-                                </form>
+                                <?php
+                                $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+                                $sql5 = "SELECT * FROM bets WHERE user=" . $userId . " AND game=" . $row['id'];
+                                $result5 = mysqli_query($conn, $sql5);
+                                $queryResult5 = mysqli_num_rows($result5);
+                                if ($queryResult5 == 0) : ?>
+                                    <form class="game-form" action="includes/betGame.inc.php" method="post">
+                                        <input type="text" name="game-id" value="<?php echo $row['id']; ?>" readonly style="display: none; width: 0; height: 0;">
+                                        <div style="margin-bottom: 5px;">
+                                            <input type="number" name="result-home" required id="result-home<?php echo $row['id']; ?>" value="0" min="0" oninput="checkResult(<?php echo $row['id']; ?>)">
+                                            <span>vs</span>
+                                            <input type="number" name="result-away" required id="result-away<?php echo $row['id']; ?>" value="0" min="0" oninput="checkResult(<?php echo $row['id']; ?>)">
+                                        </div>
+                                        <div id="penalties<?php echo $row['id']; ?>" style="margin-bottom: 8px;">
+                                            <input type="radio" name="penalty" value="1" checked>
+                                            <span> ← Vencedor penalties → </span>
+                                            <input type="radio" name="penalty" value="2">
+                                        </div>
+                                        <input type="submit" name="bet-game" value="Apostar">
+                                    </form>
+                                <?php else :
+                                    $row5 = mysqli_fetch_assoc($result5); ?>
+                                    <p class="bet-result">Aposta: <span class="result-bet"><?php echo gameResult($row5); ?></span></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endwhile;
@@ -309,6 +337,21 @@ function betGame($conn, $row)
             } else {
                 echo '<span class="bet-green">+' . $row2['points'] . ' pontos</span>';
             }
+        }
+    }
+}
+
+function gameResult($row)
+{
+    if ($row['resultHome'] != $row['resultAway']) {
+        return $row['resultHome'] . ' - ' . $row['resultAway'];
+    } else {
+        if ($row['penalty_winner'] == 1) {
+            return '(P)' . $row['resultHome'] . ' - ' . $row['resultAway'];
+        } elseif ($row['penalty_winner'] == 2) {
+            return $row['resultHome'] . ' - ' . $row['resultAway'] . '(P)';
+        } else {
+            return $row['resultHome'] . ' - ' . $row['resultAway'];
         }
     }
 }

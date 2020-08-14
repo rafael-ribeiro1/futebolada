@@ -1,0 +1,51 @@
+@media screen and (max-width: 800px) {
+    .header {
+        width: auto;
+    }
+    .reglogin {
+        width: auto;
+    }
+    .body {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .reglogin {
+        flex-direction: column;
+    }
+    .reg input[type = "password"] {
+        width: 120px;
+    }
+    .bar {
+        width: 80%;
+        height: 3px;
+        margin: 25px auto;
+    }
+
+    .body {
+        flex-direction: column;
+    }
+    .left {
+        flex-grow: 1;
+        margin: 5px;
+    }
+    .teams {
+        flex-direction: column;
+    }
+    .team-home {
+        justify-content: flex-start;
+    }
+    .team-away {
+        justify-content: flex-end;
+    }
+    .vs-res {
+        margin: 5px 0;
+    }
+    .rigth {
+        flex-grow: 1;
+    }
+    .cotacao p {
+        font-size: 10pt;
+    }
+}
