@@ -33,8 +33,27 @@ function closeBar() {
 }
 
 function closeBarAuto() {
-    setTimeout(function() {
+    setTimeout(function () {
         var bar = document.getElementById('bet-bar')
         bar.style.display = "none"
     }, 10000)
+}
+
+function showTeams(id) {
+    var xhttp
+    var teams = document.getElementById('league-teams')
+
+    if (id == 0) {
+        teams.innerHTML = ""
+        return
+    }
+
+    xhttp = new XMLHttpRequest()
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            teams.innerHTML = this.responseText
+        }
+    }
+    xhttp.open("GET", "includes/selectTeams.ajax.php?league=" + id, true)
+    xhttp.send()
 }

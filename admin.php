@@ -47,7 +47,8 @@
     </form>
     <hr>
     <form action="includes/finalyzeLeague.inc.php" method="post">
-        <select name="league">
+        <select name="league" onchange="showTeams(this.value)">
+            <option value="0"></option>
             <?php
             $sql = "SELECT id, name FROM leagues";
             $result = mysqli_query($conn, $sql);
@@ -55,9 +56,10 @@
                 <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
             <?php endwhile; ?>
         </select>
-        <input type="number" name="winner" required min="1">
+        <div id="league-teams"></div>
         <input type="submit" name="submit-league" value="Finalizar competição">
     </form>
+    <script src="script/functions.js"></script>
 </body>
 <?php mysqli_close($conn) ?>
 
